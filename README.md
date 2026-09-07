@@ -16,9 +16,9 @@ Tikvatlibenu, built as a single Next.js application with Payload CMS embedded.
 
 ```bash
 pnpm install
-cp .env.example .env      # then fill in the values, see below
-pnpm payload migrate      # create the schema
-pnpm seed                 # optional: sample bilingual content + admin user
+cp .env.example .env.local   # then fill in the values, see below
+pnpm payload migrate         # create the schema
+pnpm seed                    # optional: sample bilingual content + admin user
 pnpm dev
 ```
 
@@ -51,7 +51,10 @@ Every variable is documented in [.env.example](.env.example). The essentials:
 | `NEXT_PUBLIC_SERVER_URL` | yes | Public origin. Drives canonical URLs, hreflang and the sitemap. |
 | `PAYLOAD_SECRET` | yes | Random string. `openssl rand -base64 32` |
 | `DATABASE_URI` | yes | Supabase Postgres. Use the **session** pooler (port 5432), not the transaction pooler — migrations need it. |
-| `S3_*` + `NEXT_PUBLIC_SUPABASE_URL` | no | Supabase Storage credentials. Leave blank and uploads go to local disk under `/media`. |
+| `NEXT_PUBLIC_SUPABASE_URL` | no | Project URL, from Project Settings > Data API. |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | no | `sb_publishable_...`. Safe in the browser; row level security governs what it reaches. |
+| `SUPABASE_SECRET_KEY` | no | `sb_secret_...`. Bypasses row level security — server-side only, never prefixed with `NEXT_PUBLIC_`. |
+| `S3_*` | no | Supabase Storage credentials. Leave blank and uploads go to local disk under `/media`. |
 | `RESEND_API_KEY`, `RESEND_FROM_EMAIL` | no | Without them the contact form still stores submissions, it just cannot email them. |
 | `CONTACT_NOTIFICATION_EMAIL` | no | Overrides the address in Site Settings → Contact. |
 

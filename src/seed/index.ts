@@ -5,7 +5,7 @@
  * Run with:  pnpm seed
  * Safe to re-run: it skips anything that already exists.
  */
-import 'dotenv/config'
+import './env'
 import { getPayload } from 'payload'
 import config from '../payload.config'
 import { richText } from './richText'
