@@ -49,6 +49,13 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
+    // Payload's dev-mode auto-push rewrites the live schema on every `next dev`
+    // and leaves a 'dev' row in payload_migrations that makes later `migrate`
+    // runs warn about data loss. Schema changes go through migrations instead:
+    //   pnpm payload migrate:create <name> && pnpm payload migrate
+    // Set PAYLOAD_DB_PUSH=true for a throwaway local database if you want the
+    // old behaviour while iterating on collections.
+    push: process.env.PAYLOAD_DB_PUSH === 'true',
   }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
