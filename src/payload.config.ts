@@ -48,6 +48,16 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
+      // Supabase's session pooler allows 15 client connections for the whole
+      // project, shared by every environment at once. node-postgres defaults to
+      // 10 per pool and holds them idle, so one running dev server plus a
+      // production build exhausts the budget and the build dies mid-prerender
+      // with (EMAXCONNSESSION). Keep each instance's share small, and hand
+      // idle connections back quickly so builds and serverless functions do
+      // not sit on them.
+      max: Number(process.env.DATABASE_POOL_MAX ?? 4),
+      idleTimeoutMillis: 10_000,
+      connectionTimeoutMillis: 15_000,
     },
     // Payload's dev-mode auto-push rewrites the live schema on every `next dev`
     // and leaves a 'dev' row in payload_migrations that makes later `migrate`
