@@ -4,6 +4,8 @@ import config from '@payload-config'
 import { RootLayout, handleServerFunctions } from '@payloadcms/next/layouts'
 import React from 'react'
 
+// The admin UI's own stylesheet. Without it /admin renders as unstyled HTML.
+import '@payloadcms/next/css'
 import { importMap } from './admin/importMap.js'
 import './custom.scss'
 
