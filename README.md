@@ -17,7 +17,7 @@ Tikvatlibenu, built as a single Next.js application with Payload CMS embedded.
 ```bash
 pnpm install
 cp .env.example .env.local   # then fill in the values, see below
-pnpm payload migrate         # create the schema
+pnpm migrate                 # create the schema
 pnpm seed                    # optional: sample bilingual content + admin user
 pnpm dev
 ```
@@ -50,7 +50,9 @@ Every variable is documented in [.env.example](.env.example). The essentials:
 | --- | --- | --- |
 | `NEXT_PUBLIC_SERVER_URL` | yes | Public origin. Drives canonical URLs, hreflang and the sitemap. |
 | `PAYLOAD_SECRET` | yes | Random string. `openssl rand -base64 32` |
-| `DATABASE_URI` | yes | Supabase Postgres. Use the **session** pooler (port 5432), not the transaction pooler — migrations need it. |
+| `DATABASE_URI` | yes | Supabase **transaction** pooler, port 6543. Used by the app and the build. |
+| `DATABASE_URI_SESSION` | yes | Supabase **session** pooler, port 5432. Used only by migrations. |
+| `DATABASE_POOL_MAX` | no | Connections per instance, default 4. |
 | `NEXT_PUBLIC_SUPABASE_URL` | no | Project URL, from Project Settings > Data API. |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | no | `sb_publishable_...`. Safe in the browser; row level security governs what it reaches. |
 | `SUPABASE_SECRET_KEY` | no | `sb_secret_...`. Bypasses row level security — server-side only, never prefixed with `NEXT_PUBLIC_`. |
@@ -129,18 +131,38 @@ icons with `rtl:-scale-x-100`.
 
 1. Provision Supabase (database + a storage bucket) and set the environment
    variables on the host.
-2. Run migrations as part of the release step, before the app starts:
+2. Run migrations before the app starts. Do this as a separate step, not inside
+   the Vercel build — the build itself must not open a session-pooler
+   connection:
 
    ```bash
-   pnpm payload migrate && pnpm build
+   pnpm migrate
    ```
 
 3. Migrations live in `src/migrations/`. After changing any collection or global,
    generate one and commit it:
 
    ```bash
-   pnpm payload migrate:create <name>
+   pnpm migrate:create <name>
    ```
+
+### Connection pooling
+
+Supabase's **session** pooler allows 15 client connections for the entire
+project, shared by every environment at once. `node-postgres` defaults to 10 per
+pool and holds them idle, so a single running dev server plus a production build
+exhausts the budget and the build dies mid-prerender:
+
+```
+(EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+```
+
+The app and the build therefore use the **transaction** pooler (port 6543),
+which multiplexes and has no such ceiling. Only migrations use the session
+pooler, via `pnpm migrate`, which swaps in `DATABASE_URI_SESSION`.
+
+`DATABASE_POOL_MAX` (default 4) caps what each instance holds, which matters on
+serverless where every function instance opens its own pool.
 
 `pnpm generate:types` regenerates `src/payload-types.ts` after schema changes;
 the build type-checks against it.
