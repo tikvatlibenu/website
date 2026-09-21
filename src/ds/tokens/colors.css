@@ -1,0 +1,149 @@
+/*
+ * Tikvat Libenu — color tokens.
+ * The five brand hues are sampled from the butterfly logo:
+ *   navy #1E1F63 · pink #F41D5A · yellow #FFC63A · orange #FE9A0C · teal #41C4AF
+ * Each hue has a 50–900 scale; the brand value sits at the step marked "brand".
+ * Components never use palette steps directly — they read the semantic tokens below.
+ */
+:root {
+  /* ── Navy — brand ink. Text, headings, dark surfaces. ─────────────── */
+  --tl-color-navy-50: #f3f3fb;
+  --tl-color-navy-100: #e6e6f6;
+  --tl-color-navy-200: #cbccec;
+  --tl-color-navy-300: #a5a6dc;
+  --tl-color-navy-400: #7b7dc9;
+  --tl-color-navy-500: #5557b3;
+  --tl-color-navy-600: #3d3f99;
+  --tl-color-navy-700: #2d2e7e;
+  --tl-color-navy-800: #1e1f63; /* brand */
+  --tl-color-navy-900: #14153f;
+  --tl-color-navy-950: #0d0e2b;
+
+  /* ── Pink — the heart. Donate / primary actions, emphasis. ────────── */
+  --tl-color-pink-50: #fff0f4;
+  --tl-color-pink-100: #ffdde7;
+  --tl-color-pink-200: #ffbacd;
+  --tl-color-pink-300: #ff8bab;
+  --tl-color-pink-400: #fa5283;
+  --tl-color-pink-500: #f41d5a; /* brand */
+  --tl-color-pink-600: #d90f4a; /* action — white text passes AA (5.1:1) */
+  --tl-color-pink-700: #b30a3d;
+  --tl-color-pink-800: #8c0b33;
+  --tl-color-pink-900: #6b0d2b;
+
+  /* ── Yellow — light and hope. Highlights, warm accents. ───────────── */
+  --tl-color-yellow-50: #fff9e8;
+  --tl-color-yellow-100: #fff0c4;
+  --tl-color-yellow-200: #ffe28f;
+  --tl-color-yellow-300: #ffd460;
+  --tl-color-yellow-400: #ffc63a; /* brand */
+  --tl-color-yellow-500: #f5ae14;
+  --tl-color-yellow-600: #cc8a06;
+  --tl-color-yellow-700: #9c6708;
+  --tl-color-yellow-800: #7a500d;
+  --tl-color-yellow-900: #5e3e0f;
+
+  /* ── Orange — warmth (the pink × yellow overlap in the logo). ─────── */
+  --tl-color-orange-50: #fff5e6;
+  --tl-color-orange-100: #ffe6bf;
+  --tl-color-orange-200: #ffd08a;
+  --tl-color-orange-300: #ffb650;
+  --tl-color-orange-400: #ffa428;
+  --tl-color-orange-500: #fe9a0c; /* brand */
+  --tl-color-orange-600: #d97a04;
+  --tl-color-orange-700: #a85c06;
+  --tl-color-orange-800: #82470a;
+  --tl-color-orange-900: #63370c;
+
+  /* ── Teal — calm and care. Success, health, supportive accents. ───── */
+  --tl-color-teal-50: #ecfaf7;
+  --tl-color-teal-100: #d0f3ec;
+  --tl-color-teal-200: #a4e7da;
+  --tl-color-teal-300: #6fd6c4;
+  --tl-color-teal-400: #41c4af; /* brand */
+  --tl-color-teal-500: #25a893;
+  --tl-color-teal-600: #178777;
+  --tl-color-teal-700: #136b5f; /* text-safe on white (6.4:1) */
+  --tl-color-teal-800: #12554d;
+  --tl-color-teal-900: #0f453f;
+
+  /* ── Gray — cool neutrals with a hint of navy. ─────────────────────── */
+  --tl-color-white: #ffffff;
+  --tl-color-gray-50: #f8f8fc;
+  --tl-color-gray-100: #f1f1f7;
+  --tl-color-gray-200: #e4e4ee;
+  --tl-color-gray-300: #cfcfde;
+  --tl-color-gray-400: #a6a7bd;
+  --tl-color-gray-500: #6f708d;
+  --tl-color-gray-600: #5a5b78;
+  --tl-color-gray-700: #42435f;
+  --tl-color-gray-800: #2b2c47;
+  --tl-color-gray-900: #191a33;
+
+  /* ── Red — errors only (kept apart from the brand pink). ──────────── */
+  --tl-color-red-50: #fdecee;
+  --tl-color-red-600: #c4142b;
+  --tl-color-red-700: #9f1023;
+
+  /* ═════════════ Semantic tokens — what components actually use ═════ */
+
+  /* Text */
+  --tl-color-text: var(--tl-color-navy-800);
+  --tl-color-text-secondary: var(--tl-color-gray-600);
+  --tl-color-text-muted: var(--tl-color-gray-500);
+  --tl-color-text-inverse: var(--tl-color-white);
+  --tl-color-text-inverse-muted: var(--tl-color-navy-200);
+  --tl-color-text-link: var(--tl-color-pink-600);
+  --tl-color-text-link-hover: var(--tl-color-pink-700);
+
+  /* Backgrounds & surfaces */
+  --tl-color-bg: var(--tl-color-white);
+  --tl-color-bg-soft: var(--tl-color-gray-50);
+  --tl-color-bg-inverse: var(--tl-color-navy-800);
+  --tl-color-surface: var(--tl-color-white);
+  --tl-color-surface-sky: var(--tl-color-navy-50);
+  --tl-color-surface-blush: var(--tl-color-pink-50);
+  --tl-color-surface-sun: var(--tl-color-yellow-50);
+  --tl-color-surface-mint: var(--tl-color-teal-50);
+  --tl-color-overlay: rgba(13, 14, 43, 0.56);
+
+  /* Borders */
+  --tl-color-border: var(--tl-color-gray-200);
+  --tl-color-border-strong: var(--tl-color-gray-300);
+  --tl-color-border-input: #8a8ba6; /* 3.3:1 on white — WCAG 1.4.11 */
+  --tl-color-border-inverse: rgba(255, 255, 255, 0.18);
+
+  /* Primary action — donate, main CTAs */
+  --tl-color-primary: var(--tl-color-pink-600);
+  --tl-color-primary-hover: var(--tl-color-pink-700);
+  --tl-color-primary-active: var(--tl-color-pink-800);
+  --tl-color-primary-soft: var(--tl-color-pink-50);
+  --tl-color-on-primary: var(--tl-color-white);
+
+  /* Secondary action — navy */
+  --tl-color-secondary: var(--tl-color-navy-800);
+  --tl-color-secondary-hover: var(--tl-color-navy-700);
+  --tl-color-secondary-active: var(--tl-color-navy-900);
+  --tl-color-secondary-soft: var(--tl-color-navy-50);
+  --tl-color-on-secondary: var(--tl-color-white);
+
+  /* Accents (decorative fills; pair with navy text) */
+  --tl-color-accent-sun: var(--tl-color-yellow-400);
+  --tl-color-accent-warm: var(--tl-color-orange-500);
+  --tl-color-accent-calm: var(--tl-color-teal-400);
+  --tl-color-accent-heart: var(--tl-color-pink-500);
+
+  /* Feedback */
+  --tl-color-success: var(--tl-color-teal-700);
+  --tl-color-success-bg: var(--tl-color-teal-50);
+  --tl-color-warning: var(--tl-color-orange-700);
+  --tl-color-warning-bg: var(--tl-color-orange-50);
+  --tl-color-danger: var(--tl-color-red-600);
+  --tl-color-danger-bg: var(--tl-color-red-50);
+  --tl-color-info: var(--tl-color-navy-600);
+  --tl-color-info-bg: var(--tl-color-navy-50);
+
+  /* Focus ring (6.2:1 on white). Dark sections switch it to yellow. */
+  --tl-color-focus: var(--tl-color-navy-500);
+  --tl-color-focus-inverse: var(--tl-color-yellow-400);
+}

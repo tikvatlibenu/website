@@ -60,6 +60,9 @@ export default function proxy(request: NextRequest) {
     pathname.startsWith('/api') ||
     pathname.startsWith('/_next') ||
     pathname.startsWith('/media') ||
+    // Internal reference page. It renders both directions itself, so it has
+    // no locale prefix to redirect to.
+    pathname.startsWith('/design-system') ||
     PUBLIC_FILE.test(pathname)
   ) {
     return NextResponse.next()

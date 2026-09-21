@@ -1,0 +1,71 @@
+/*
+ * Tikvat Libenu — spacing, layout, shape, elevation, motion.
+ * Shapes are soft and generous, echoing the petals of the butterfly logo.
+ */
+:root {
+  /* Spacing — 4px base */
+  --tl-space-0: 0;
+  --tl-space-1: 4px;
+  --tl-space-2: 8px;
+  --tl-space-3: 12px;
+  --tl-space-4: 16px;
+  --tl-space-5: 20px;
+  --tl-space-6: 24px;
+  --tl-space-8: 32px;
+  --tl-space-10: 40px;
+  --tl-space-12: 48px;
+  --tl-space-16: 64px;
+  --tl-space-20: 80px;
+  --tl-space-24: 96px;
+  --tl-space-32: 128px;
+
+  /* Page layout */
+  --tl-container-narrow: 760px;  /* articles, forms */
+  --tl-container: 1200px;        /* default page width */
+  --tl-container-wide: 1360px;   /* hero, galleries */
+  --tl-gutter: clamp(20px, 4vw, 40px);           /* page side padding */
+  --tl-section-space: clamp(56px, 8vw, 112px);    /* vertical padding of a page section */
+  --tl-section-space-compact: clamp(40px, 5vw, 72px);
+
+  /* Radius */
+  --tl-radius-xs: 6px;
+  --tl-radius-sm: 10px;
+  --tl-radius-md: 16px;
+  --tl-radius-lg: 24px;
+  --tl-radius-xl: 32px;
+  --tl-radius-2xl: 48px;
+  --tl-radius-pill: 999px;
+
+  /* Petal shapes — organic border-radius values for image masks & decor */
+  --tl-shape-petal-a: 62% 38% 46% 54% / 56% 44% 56% 44%;
+  --tl-shape-petal-b: 38% 62% 54% 46% / 44% 58% 42% 56%;
+  --tl-shape-petal-c: 55% 45% 38% 62% / 48% 60% 40% 52%;
+  --tl-shape-leaf: 72% 28% 72% 28% / 60% 40% 60% 40%;
+
+  /* Elevation — navy-tinted, soft */
+  --tl-shadow-xs: 0 1px 2px rgba(30, 31, 99, 0.06);
+  --tl-shadow-sm: 0 2px 8px rgba(30, 31, 99, 0.06), 0 1px 2px rgba(30, 31, 99, 0.04);
+  --tl-shadow-md: 0 8px 24px rgba(30, 31, 99, 0.08), 0 2px 6px rgba(30, 31, 99, 0.04);
+  --tl-shadow-lg: 0 20px 48px rgba(30, 31, 99, 0.12), 0 4px 12px rgba(30, 31, 99, 0.05);
+  --tl-shadow-primary: 0 10px 24px rgba(217, 15, 74, 0.28); /* glow under donate buttons */
+  --tl-shadow-focus: 0 0 0 3px var(--tl-color-white), 0 0 0 6px var(--tl-color-focus);
+
+  /* Motion — gentle; everything respects prefers-reduced-motion */
+  --tl-duration-fast: 120ms;
+  --tl-duration-base: 200ms;
+  --tl-duration-slow: 360ms;
+  --tl-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --tl-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Stacking */
+  --tl-z-header: 100;
+  --tl-z-floating: 900;
+  --tl-z-overlay: 1000;
+  --tl-z-dialog: 1100;
+
+  /* Controls */
+  --tl-control-height-sm: 40px;
+  --tl-control-height-md: 48px;
+  --tl-control-height-lg: 56px;
+  --tl-tap-target: 44px; /* minimum touch size */
+}
