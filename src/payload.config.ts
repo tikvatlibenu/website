@@ -104,25 +104,31 @@ export default buildConfig({
   sharp,
   cors: trustedOrigins,
   csrf: trustedOrigins,
-  plugins: hasS3
-    ? [
-        s3Storage({
-          collections: {
-            media: {
-              prefix: 'media',
-            },
-          },
-          bucket: process.env.S3_BUCKET as string,
-          config: {
-            forcePathStyle: true,
-            region: process.env.S3_REGION || 'us-east-1',
-            endpoint: process.env.S3_ENDPOINT,
-            credentials: {
-              accessKeyId: process.env.S3_ACCESS_KEY_ID as string,
-              secretAccessKey: process.env.S3_SECRET_ACCESS_KEY as string,
-            },
-          },
-        }),
-      ]
-    : [],
+  plugins: [
+    s3Storage({
+      // The plugin adds a `prefix` column to `media`. It must be registered
+      // even without S3 credentials, otherwise the schema differs between
+      // environments: a database migrated without keys has no `prefix` column,
+      // and turning the keys on later makes every media query fail with
+      // "Something went wrong". `alwaysInsertFields` keeps the field while the
+      // storage itself stays off, so uploads fall back to local disk.
+      enabled: hasS3,
+      alwaysInsertFields: true,
+      collections: {
+        media: {
+          prefix: 'media',
+        },
+      },
+      bucket: process.env.S3_BUCKET || 'media',
+      config: {
+        forcePathStyle: true,
+        region: process.env.S3_REGION || 'us-east-1',
+        endpoint: process.env.S3_ENDPOINT,
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+        },
+      },
+    }),
+  ],
 })
