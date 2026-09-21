@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { isLocale, localeHreflang, locales } from '@/i18n/config'
 import { getDictionary } from '@/i18n/dictionaries'
-import { getSiteSettings } from '@/lib/payload'
+import { getContactPage, getSiteSettings } from '@/lib/payload'
+import { mediaAlt, mediaUrl } from '@/lib/media'
 import { PageHero } from '@/components/layout/PageHero'
+import { RichText } from '@/components/ui/RichText'
 import { ContactForm } from '@/components/ui/ContactForm'
 
 export const revalidate = 300
@@ -15,11 +18,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   if (!isLocale(locale)) return {}
-  const dict = getDictionary(locale)
+  const [contact, dict] = [await getContactPage(locale), getDictionary(locale)]
 
   return {
-    title: dict.contact.title,
-    description: dict.contact.subtitle,
+    title: contact.title || dict.contact.title,
+    description: contact.metaDescription ?? contact.intro ?? dict.contact.subtitle,
     alternates: {
       canonical: `/${locale}/contact`,
       languages: Object.fromEntries([
@@ -35,15 +38,40 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   if (!isLocale(raw)) notFound()
   const locale = raw
   const dict = getDictionary(locale)
-  const settings = await getSiteSettings(locale)
+
+  const [contact, settings] = await Promise.all([getContactPage(locale), getSiteSettings(locale)])
+  const hero = mediaUrl(contact.heroImage, 'hero')
 
   return (
     <>
-      <PageHero title={dict.contact.title} description={dict.contact.subtitle} />
+      <PageHero
+        title={contact.title || dict.contact.title}
+        description={contact.intro || dict.contact.subtitle}
+      />
+
+      {hero && (
+        <div className="container-page pt-12">
+          <div className="relative aspect-16/9 overflow-hidden rounded-card bg-slate-mist-200">
+            <Image
+              src={hero}
+              alt={mediaAlt(contact.heroImage)}
+              fill
+              sizes="(max-width: 1024px) 100vw, 1120px"
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+      )}
 
       <div className="container-page py-16">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-16">
           <div className="min-w-0">
+            {contact.body && (
+              <div className="mb-10">
+                <RichText data={contact.body} />
+              </div>
+            )}
             <ContactForm locale={locale} dict={dict} />
           </div>
 

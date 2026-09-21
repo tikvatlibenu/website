@@ -14,6 +14,7 @@ import { ContactSubmissions } from './collections/ContactSubmissions'
 import { SiteSettings } from './globals/SiteSettings'
 import { Navigation } from './globals/Navigation'
 import { AboutPage } from './globals/AboutPage'
+import { ContactPage } from './globals/ContactPage'
 
 /**
  * Origins allowed to make authenticated requests to Payload.
@@ -57,7 +58,7 @@ export default buildConfig({
     },
   },
   collections: [Campaigns, Faqs, Media, ContactSubmissions, Users],
-  globals: [SiteSettings, Navigation, AboutPage],
+  globals: [SiteSettings, Navigation, AboutPage, ContactPage],
   localization: {
     locales: [
       { label: 'עברית', code: 'he', rtl: true },

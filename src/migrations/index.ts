@@ -1,15 +1,21 @@
 import * as migration_20260907_163940_initial from './20260907_163940_initial';
 import * as migration_20260921_120000_enable_rls from './20260921_120000_enable_rls';
+import * as migration_20260921_133344_add_contact_page from './20260921_133344_add_contact_page';
 
 export const migrations = [
   {
     up: migration_20260907_163940_initial.up,
     down: migration_20260907_163940_initial.down,
-    name: '20260907_163940_initial'
+    name: '20260907_163940_initial',
   },
   {
     up: migration_20260921_120000_enable_rls.up,
     down: migration_20260921_120000_enable_rls.down,
-    name: '20260921_120000_enable_rls'
+    name: '20260921_120000_enable_rls',
+  },
+  {
+    up: migration_20260921_133344_add_contact_page.up,
+    down: migration_20260921_133344_add_contact_page.down,
+    name: '20260921_133344_add_contact_page'
   },
 ];
