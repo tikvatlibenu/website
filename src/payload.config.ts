@@ -57,6 +57,11 @@ export default buildConfig({
     meta: {
       titleSuffix: ' — Tikvatlibenu',
     },
+    components: {
+      // Reference page for the component library, linked from the admin nav so
+      // editors and the client can reach it without hunting for the URL.
+      afterNavLinks: ['/components/admin/DesignSystemLink#DesignSystemLink'],
+    },
   },
   collections: [Campaigns, Faqs, Media, ContactSubmissions, Users],
   globals: [SiteSettings, Navigation, AboutPage],
