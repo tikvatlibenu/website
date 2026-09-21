@@ -2,8 +2,12 @@ import type { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  labels: {
+    singular: { en: 'Media', he: 'מדיה' },
+    plural: { en: 'Media', he: 'מדיה' },
+  },
   admin: {
-    group: 'Content',
+    group: { en: 'Content', he: 'תוכן' },
   },
   access: {
     read: () => true,
@@ -27,15 +31,20 @@ export const Media: CollectionConfig = {
     {
       name: 'alt',
       type: 'text',
+      label: { en: 'Alt Text', he: 'טקסט חלופי' },
       localized: true,
       required: true,
       admin: {
-        description: 'Describe the image for screen readers and SEO.',
+        description: {
+          en: 'Describe the image for screen readers and SEO.',
+          he: 'תיאור התמונה עבור קוראי מסך ומנועי חיפוש.',
+        },
       },
     },
     {
       name: 'caption',
       type: 'text',
+      label: { en: 'Caption', he: 'כיתוב' },
       localized: true,
     },
   ],

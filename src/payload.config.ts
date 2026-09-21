@@ -4,6 +4,8 @@ import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { s3Storage } from '@payloadcms/storage-s3'
+import { en } from '@payloadcms/translations/languages/en'
+import { he } from '@payloadcms/translations/languages/he'
 import sharp from 'sharp'
 
 import { Users } from './collections/Users'
@@ -58,10 +60,16 @@ export default buildConfig({
   },
   collections: [Campaigns, Faqs, Media, ContactSubmissions, Users],
   globals: [SiteSettings, Navigation, AboutPage],
+  // The admin interface itself is bilingual. Each user picks their language
+  // from their account page; Hebrew is the default, matching the site.
+  i18n: {
+    supportedLanguages: { he, en },
+    fallbackLanguage: 'he',
+  },
   localization: {
     locales: [
-      { label: 'עברית', code: 'he', rtl: true },
-      { label: 'English', code: 'en' },
+      { label: { he: 'עברית', en: 'Hebrew' }, code: 'he', rtl: true },
+      { label: { he: 'אנגלית', en: 'English' }, code: 'en' },
     ],
     defaultLocale: 'he',
     fallback: true,

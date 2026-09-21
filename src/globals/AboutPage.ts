@@ -2,45 +2,83 @@ import type { GlobalConfig } from 'payload'
 
 export const AboutPage: GlobalConfig = {
   slug: 'about-page',
-  label: 'About Page',
-  admin: { group: 'Content' },
+  label: { en: 'About Page', he: 'דף אודות' },
+  admin: { group: { en: 'Content', he: 'תוכן' } },
   access: {
     read: () => true,
     update: ({ req }) => Boolean(req.user),
   },
   fields: [
-    { name: 'title', type: 'text', localized: true },
+    {
+      name: 'title',
+      type: 'text',
+      label: { en: 'Title', he: 'כותרת' },
+      localized: true,
+    },
     {
       name: 'intro',
       type: 'textarea',
+      label: { en: 'Intro', he: 'פתיח' },
       localized: true,
-      admin: { description: 'Short lead paragraph shown under the page title.' },
+      admin: {
+        description: {
+          en: 'Short lead paragraph shown under the page title.',
+          he: 'פסקת פתיחה קצרה שמוצגת מתחת לכותרת הדף.',
+        },
+      },
     },
-    { name: 'heroImage', type: 'upload', relationTo: 'media' },
+    {
+      name: 'heroImage',
+      type: 'upload',
+      label: { en: 'Hero Image', he: 'תמונה ראשית' },
+      relationTo: 'media',
+    },
     {
       name: 'body',
       type: 'richText',
+      label: { en: 'Body', he: 'תוכן' },
       localized: true,
-      admin: { description: 'The full story, mission and transparency statement.' },
+      admin: {
+        description: {
+          en: 'The full story, mission and transparency statement.',
+          he: 'הסיפור המלא, החזון והצהרת השקיפות.',
+        },
+      },
     },
     {
       name: 'trustPoints',
       type: 'array',
       localized: true,
-      label: 'Trust & Transparency',
-      labels: { singular: 'Point', plural: 'Points' },
+      label: { en: 'Trust & Transparency', he: 'אמון ושקיפות' },
+      labels: {
+        singular: { en: 'Point', he: 'נקודה' },
+        plural: { en: 'Points', he: 'נקודות' },
+      },
       maxRows: 6,
       admin: {
-        description: 'Short reassurance cards, e.g. tax deductibility or fund distribution.',
+        description: {
+          en: 'Short reassurance cards, e.g. tax deductibility or fund distribution.',
+          he: 'כרטיסים קצרים שמחזקים אמון, לדוגמה זיכוי ממס או אופן חלוקת הכספים.',
+        },
       },
       fields: [
-        { name: 'title', type: 'text', required: true },
-        { name: 'description', type: 'textarea' },
+        {
+          name: 'title',
+          type: 'text',
+          label: { en: 'Title', he: 'כותרת' },
+          required: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          label: { en: 'Description', he: 'תיאור' },
+        },
       ],
     },
     {
       name: 'metaDescription',
       type: 'textarea',
+      label: { en: 'Meta Description', he: 'תיאור למנועי חיפוש' },
       localized: true,
       maxLength: 200,
     },
