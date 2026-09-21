@@ -1,9 +1,13 @@
 import type { GlobalConfig } from 'payload'
+import { frontendPaths } from '@/lib/frontendPaths'
 
 export const AboutPage: GlobalConfig = {
   slug: 'about-page',
   label: { en: 'About Page', he: 'דף אודות' },
-  admin: { group: { en: 'Content', he: 'תוכן' } },
+  admin: {
+    group: { en: 'Content', he: 'תוכן' },
+    preview: (_doc, { locale }) => frontendPaths.about(locale),
+  },
   access: {
     read: () => true,
     update: ({ req }) => Boolean(req.user),

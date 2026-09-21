@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { frontendPaths } from '@/lib/frontendPaths'
 
 export const Faqs: CollectionConfig = {
   slug: 'faqs',
@@ -10,6 +11,8 @@ export const Faqs: CollectionConfig = {
     useAsTitle: 'question',
     defaultColumns: ['question', 'order', 'updatedAt'],
     group: { en: 'Content', he: 'תוכן' },
+    // FAQs have no page each; they all appear on the FAQ page.
+    preview: (_doc, { locale }) => frontendPaths.faq(locale),
   },
   access: {
     read: () => true,

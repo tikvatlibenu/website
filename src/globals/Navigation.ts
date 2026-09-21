@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { frontendPaths } from '@/lib/frontendPaths'
 
 /**
  * The link arrays are localized as a whole rather than per-field: each language
@@ -29,7 +30,11 @@ const linkFields = [
 export const Navigation: GlobalConfig = {
   slug: 'navigation',
   label: { en: 'Navigation', he: 'ניווט' },
-  admin: { group: { en: 'Configuration', he: 'הגדרות' } },
+  admin: {
+    group: { en: 'Configuration', he: 'הגדרות' },
+    // Header and footer links appear on every page.
+    preview: (_doc, { locale }) => frontendPaths.home(locale),
+  },
   access: {
     read: () => true,
     update: ({ req }) => Boolean(req.user),

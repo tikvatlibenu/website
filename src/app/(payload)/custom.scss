@@ -2,3 +2,15 @@
 :root {
   --theme-success-500: #d9a94e;
 }
+
+/*
+ * The rich text editor (Lexical) parks its hidden drag handle and link editor
+ * about 9,500px off the left edge. In a left-to-right page that is invisible,
+ * but the admin runs right-to-left in Hebrew, where content off the left edge
+ * is scrollable: every edit screen with a rich text field grew ~10,000px of
+ * empty horizontal scroll. `clip` hides the overflow without turning the page
+ * into a scroll container, so Payload's sticky headers keep working.
+ */
+html[dir='rtl'] {
+  overflow-x: clip;
+}
