@@ -146,6 +146,23 @@ icons with `rtl:-scale-x-100`.
    pnpm migrate:create <name>
    ```
 
+### Row level security
+
+Supabase exposes every table in `public` over its REST Data API, reachable with
+the publishable key — which is public by design. This app never uses that API:
+everything goes through Payload, connected as the table owner, which RLS does
+not apply to.
+
+So every table has **RLS enabled with no policies**: the Data API sees nothing
+and can change nothing, while Payload is unaffected. This is migration
+`20260921_120000_enable_rls`, which also installs an event trigger that enables
+RLS on any table created later.
+
+- Never use `FORCE ROW LEVEL SECURITY` — it applies RLS to the owner too and
+  locks Payload out.
+- If a feature ever needs the Data API, add a narrow policy for that one table in
+  its own migration. Do not disable RLS.
+
 ### Connection pooling
 
 Supabase's **session** pooler allows 15 client connections for the entire
