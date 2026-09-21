@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { getDictionary } from '@/i18n/dictionaries'
+import { Button } from '@/components/ui/Button'
 
 export default function LocaleError({
   error,
@@ -22,13 +23,9 @@ export default function LocaleError({
     <div className="container-prose flex min-h-[55vh] flex-col items-center justify-center py-24 text-center">
       <h1 className="text-3xl">{dict.common.errorTitle}</h1>
       <p className="mt-3 text-night-700">{dict.common.errorBody}</p>
-      <button
-        type="button"
-        onClick={reset}
-        className="mt-8 rounded-full bg-candle-500 px-7 py-3 text-base font-semibold text-night-950 transition-colors hover:bg-candle-400"
-      >
+      <Button variant="secondary" size="md" onClick={reset} className="mt-8">
         {dict.common.retry}
-      </button>
+      </Button>
     </div>
   )
 }

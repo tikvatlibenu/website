@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Button } from '@/components/ui/Button'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/dictionaries'
 import type { Navigation, SiteSetting } from '@/payload-types'
@@ -78,12 +79,9 @@ export function SiteHeader({
 
         <div className="flex items-center gap-2 sm:gap-3">
           <LocaleSwitcher locale={locale} label={dict.nav.switchLanguage} />
-          <Link
-            href={cta.href}
-            className="rounded-full bg-candle-500 px-4 py-2.5 text-sm font-semibold text-night-950 transition-colors hover:bg-candle-400 sm:px-5"
-          >
+          <Button href={cta.href} variant="primary" size="sm" iconStart="heart">
             {cta.label}
-          </Link>
+          </Button>
           <MobileNav
             items={items}
             cta={cta}
