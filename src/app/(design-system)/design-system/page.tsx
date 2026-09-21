@@ -24,7 +24,15 @@ const GROUP_ORDER: Array<[string, string]> = [
   ['utilities', 'כלי עזר'],
 ]
 
-type Entry = { name: string; group: string; description: string }
+type Entry = {
+  name: string
+  group: string
+  description: string
+  /** How wide the stories want to be, taken from the export's own variant grid. */
+  mode: 'grid' | 'column' | 'single'
+  /** The story the export shows first. */
+  primary: string | null
+}
 
 export default function DesignSystemPage() {
   const entries = catalog as Entry[]
@@ -99,22 +107,26 @@ export default function DesignSystemPage() {
       </header>
 
       <main style={{ paddingBlock: 'var(--tl-space-12)' }}>
-        <Container>
-          {groups.length === 0 && <Paragraph>לא נמצאו רכיבים תואמים.</Paragraph>}
+        {groups.length === 0 && (
+          <Container>
+            <Paragraph>לא נמצאו רכיבים תואמים.</Paragraph>
+          </Container>
+        )}
 
-          {groups.map((group) => (
-            <section key={group.slug} style={{ marginBlockEnd: 'var(--tl-space-16)' }}>
+        {groups.map((group) => (
+          <section key={group.slug} style={{ marginBlockEnd: 'var(--tl-space-16)' }}>
+            <Container>
               <Heading level={2} size="h3">
                 {group.label}
               </Heading>
               <Divider />
+            </Container>
 
-              {group.items.map((item) => (
-                <ComponentSection key={item.name} entry={item} />
-              ))}
-            </section>
-          ))}
-        </Container>
+            {group.items.map((item) => (
+              <ComponentSection key={item.name} entry={item} />
+            ))}
+          </section>
+        ))}
       </main>
     </TikvatRoot>
   )
@@ -127,31 +139,51 @@ function ComponentSection({ entry }: { entry: Entry }) {
     (key) => typeof stories[key] === 'function' && /^[A-Z]/.test(key),
   )
 
+  // The export's own primary story leads, as it does upstream.
+  if (entry.primary) {
+    const at = names.indexOf(entry.primary)
+    if (at > 0) names.splice(0, 0, ...names.splice(at, 1))
+  }
+
+  // Page-width components (Hero, SiteHeader, Section, Gallery…) only lay out
+  // correctly across the full width; tiling them in columns is what made them
+  // look unresponsive. Small components still tile.
+  const tiled = entry.mode === 'grid'
+
+  const grid = (
+    <div
+      style={{
+        display: 'grid',
+        gap: 'var(--tl-space-4)',
+        gridTemplateColumns: tiled ? 'repeat(auto-fit, minmax(320px, 1fr))' : '1fr',
+        marginBlockStart: 'var(--tl-space-5)',
+      }}
+    >
+      {names.map((story) => (
+        <Story key={story} name={story} render={stories[story]} />
+      ))}
+    </div>
+  )
+
   return (
     <article style={{ marginBlockStart: 'var(--tl-space-10)' }}>
-      <Heading level={3} size="h4">
-        <span dir="ltr">{entry.name}</span>
-      </Heading>
-      <Paragraph size="sm" tone="secondary">
-        {/* The upstream descriptions are English; without an LTR island their
-            trailing full stop jumps to the head of the line on this RTL page. */}
-        <span dir="ltr" style={{ display: 'inline-block', textAlign: 'start' }}>
-          {entry.description}
-        </span>
-      </Paragraph>
+      <Container>
+        <Heading level={3} size="h4">
+          <span dir="ltr">{entry.name}</span>
+        </Heading>
+        <Paragraph size="sm" tone="secondary">
+          {/* The upstream descriptions are English; without an LTR island their
+              trailing full stop jumps to the head of the line on this RTL page. */}
+          <span dir="ltr" style={{ display: 'inline-block', textAlign: 'start' }}>
+            {entry.description}
+          </span>
+        </Paragraph>
+        {tiled && grid}
+      </Container>
 
-      <div
-        style={{
-          display: 'grid',
-          gap: 'var(--tl-space-4)',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          marginBlockStart: 'var(--tl-space-5)',
-        }}
-      >
-        {names.map((story) => (
-          <Story key={story} name={story} render={stories[story]} />
-        ))}
-      </div>
+      {/* A page-width component is shown at page width: these lay themselves
+          out against the viewport, so a 1200px wrapper would misrepresent them. */}
+      {!tiled && <div style={{ paddingInline: 'var(--tl-gutter)' }}>{grid}</div>}
     </article>
   )
 }
