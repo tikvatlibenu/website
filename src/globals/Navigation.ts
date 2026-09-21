@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { revalidateGlobalOnChange } from '@/lib/revalidate'
 import { frontendPaths } from '@/lib/frontendPaths'
 
 /**
@@ -34,6 +35,10 @@ export const Navigation: GlobalConfig = {
     group: { en: 'Configuration', he: 'הגדרות' },
     // Header and footer links appear on every page.
     preview: (_doc, { locale }) => frontendPaths.home(locale),
+  },
+  hooks: {
+    // Show saved changes on the public site immediately.
+    afterChange: [revalidateGlobalOnChange],
   },
   access: {
     read: () => true,

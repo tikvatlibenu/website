@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { revalidateGlobalOnChange } from '@/lib/revalidate'
 import { frontendPaths } from '@/lib/frontendPaths'
 
 export const SiteSettings: GlobalConfig = {
@@ -9,6 +10,10 @@ export const SiteSettings: GlobalConfig = {
     // Site name, tagline and contact details show on every page; the homepage
     // shows the most of them.
     preview: (_doc, { locale }) => frontendPaths.home(locale),
+  },
+  hooks: {
+    // Show saved changes on the public site immediately.
+    afterChange: [revalidateGlobalOnChange],
   },
   access: {
     read: () => true,

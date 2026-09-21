@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateOnChange, revalidateOnDelete } from '@/lib/revalidate'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -8,6 +9,11 @@ export const Media: CollectionConfig = {
   },
   admin: {
     group: { en: 'Content', he: 'תוכן' },
+  },
+  hooks: {
+    // Show saved changes on the public site immediately.
+    afterChange: [revalidateOnChange],
+    afterDelete: [revalidateOnDelete],
   },
   access: {
     read: () => true,

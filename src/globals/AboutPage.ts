@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { revalidateGlobalOnChange } from '@/lib/revalidate'
 import { frontendPaths } from '@/lib/frontendPaths'
 
 export const AboutPage: GlobalConfig = {
@@ -7,6 +8,10 @@ export const AboutPage: GlobalConfig = {
   admin: {
     group: { en: 'Content', he: 'תוכן' },
     preview: (_doc, { locale }) => frontendPaths.about(locale),
+  },
+  hooks: {
+    // Show saved changes on the public site immediately.
+    afterChange: [revalidateGlobalOnChange],
   },
   access: {
     read: () => true,

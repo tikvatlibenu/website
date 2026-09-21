@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateOnChange, revalidateOnDelete } from '@/lib/revalidate'
 import { frontendPaths } from '@/lib/frontendPaths'
 
 export const Faqs: CollectionConfig = {
@@ -13,6 +14,11 @@ export const Faqs: CollectionConfig = {
     group: { en: 'Content', he: 'תוכן' },
     // FAQs have no page each; they all appear on the FAQ page.
     preview: (_doc, { locale }) => frontendPaths.faq(locale),
+  },
+  hooks: {
+    // Show saved changes on the public site immediately.
+    afterChange: [revalidateOnChange],
+    afterDelete: [revalidateOnDelete],
   },
   access: {
     read: () => true,

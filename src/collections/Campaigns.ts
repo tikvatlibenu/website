@@ -1,4 +1,5 @@
 import type { CollectionConfig, TextFieldSingleValidation } from 'payload'
+import { revalidateOnChange, revalidateOnDelete } from '@/lib/revalidate'
 import { slugify } from '@/lib/slugify'
 import { campaignPublicPath } from '@/lib/frontendPaths'
 
@@ -19,6 +20,11 @@ export const Campaigns: CollectionConfig = {
       en: 'A memorial page and donation form for one fallen soul.',
       he: 'דף הנצחה וטופס תרומה לזכרו של נופל אחד.',
     },
+  },
+  hooks: {
+    // Show saved changes on the public site immediately.
+    afterChange: [revalidateOnChange],
+    afterDelete: [revalidateOnDelete],
   },
   access: {
     read: ({ req }) => {
