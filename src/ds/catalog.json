@@ -2,271 +2,379 @@
   {
     "name": "Accordion",
     "group": "disclosure",
-    "description": "Expandable question-and-answer list for FAQ blocks. Keyboard and screen-reader friendly."
+    "description": "Expandable question-and-answer list for FAQ blocks. Keyboard and screen-reader friendly.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "Alert",
     "group": "feedback",
-    "description": "Inline message for form results and important notices: info, success, warning, danger. Errors are announced to screen readers."
+    "description": "Inline message for form results and important notices: info, success, warning, danger. Errors are announced to screen readers.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "ArticleCard",
     "group": "cards",
-    "description": "Blog teaser: photo, category badge, date, title, excerpt and a read-more cue. The entire card is one link."
+    "description": "Blog teaser: photo, category badge, date, title, excerpt and a read-more cue. The entire card is one link.",
+    "mode": "column",
+    "primary": "BlogGrid"
   },
   {
     "name": "Avatar",
     "group": "media",
-    "description": "Round portrait for staff, volunteers and quoted family members. Shows initials on a logo colour when there is no photo."
+    "description": "Round portrait for staff, volunteers and quoted family members. Shows initials on a logo colour when there is no photo.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "Badge",
     "group": "data-display",
-    "description": "Small pill label for article categories, event status and 'new' markers. Soft, solid or outline in the logo colours."
+    "description": "Small pill label for article categories, event status and 'new' markers. Soft, solid or outline in the logo colours.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "Breadcrumbs",
     "group": "navigation",
-    "description": "You-are-here trail at the top of inner pages, with direction-aware separators."
+    "description": "You-are-here trail at the top of inner pages, with direction-aware separators.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "ButterflyDecor",
     "group": "brand",
-    "description": "The butterfly mark as a large decorative watermark for hero, banner and card backgrounds. Purely ornamental."
+    "description": "The butterfly mark as a large decorative watermark for hero, banner and card backgrounds. Purely ornamental.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "Button",
     "group": "actions",
-    "description": "Pill-shaped action button. Pink primary is reserved for the single most important action - usually donating."
+    "description": "Pill-shaped action button. Pink primary is reserved for the single most important action - usually donating.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "CTABanner",
     "group": "sections",
-    "description": "Rounded call-to-action band that closes a page or interrupts a long one. Navy, pink gradient, sun or mint."
+    "description": "Rounded call-to-action band that closes a page or interrupts a long one. Navy, pink gradient, sun or mint.",
+    "mode": "column",
+    "primary": "Navy"
   },
   {
     "name": "CampaignProgress",
     "group": "donation",
-    "description": "Fundraising thermometer: raised vs goal with a gradient bar, donor count, days left and a donate button."
+    "description": "Fundraising thermometer: raised vs goal with a gradient bar, donor count, days left and a donate button.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "Card",
     "group": "cards",
-    "description": "The base surface: a soft, generously rounded container (elevated, outlined, tinted or navy). Specialised cards build on it."
+    "description": "The base surface: a soft, generously rounded container (elevated, outlined, tinted or navy). Specialised cards build on it.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "Checkbox",
     "group": "forms",
-    "description": "Checkbox with a large hit area for consents and multi-choice lists. The label may contain links."
+    "description": "Checkbox with a large hit area for consents and multi-choice lists. The label may contain links.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "ChipGroup",
     "group": "forms",
-    "description": "Tappable pill choices for interests, donation purposes and quick filters. Single- or multi-select."
+    "description": "Tappable pill choices for interests, donation purposes and quick filters. Single- or multi-select.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "ContactForm",
     "group": "forms",
-    "description": "Ready-made contact form: name, phone, e-mail, topic, message, consent - with labels, states and success / error messages."
+    "description": "Ready-made contact form: name, phone, e-mail, topic, message, consent - with labels, states and success / error messages.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "Container",
     "group": "foundations",
-    "description": "Centers content at the page width (narrow 760, default 1200, wide 1360) and adds the responsive side gutters."
+    "description": "Centers content at the page width (narrow 760, default 1200, wide 1360) and adds the responsive side gutters.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "Dialog",
     "group": "feedback",
-    "description": "Modal window over a navy veil for donation thank-you, video player and confirmations. Closes on Escape and outside click."
+    "description": "Modal window over a navy veil for donation thank-you, video player and confirmations. Closes on Escape and outside click.",
+    "mode": "single",
+    "primary": "ThankYou"
   },
   {
     "name": "Divider",
     "group": "foundations",
-    "description": "Separates content: a quiet hairline, or four petal dots in the logo colours."
+    "description": "Separates content: a quiet hairline, or four petal dots in the logo colours.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "DocumentCard",
     "group": "cards",
-    "description": "Downloadable official document (proper-management certificate, section 46 approval, annual report) with a verified check."
+    "description": "Downloadable official document (proper-management certificate, section 46 approval, annual report) with a verified check.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "DonationForm",
     "group": "donation",
-    "description": "The donation widget: monthly / one-time switch, preset amounts with a live impact line, custom amount, pink submit, secure note."
+    "description": "The donation widget: monthly / one-time switch, preset amounts with a live impact line, custom amount, pink submit, secure note.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "EventCard",
     "group": "cards",
-    "description": "Upcoming fun day, meet-up or fundraiser: coloured date tile, title, time, place, optional photo and status badge."
+    "description": "Upcoming fun day, meet-up or fundraiser: coloured date tile, title, time, place, optional photo and status badge.",
+    "mode": "column",
+    "primary": "UpcomingList"
   },
   {
     "name": "Eyebrow",
     "group": "typography",
-    "description": "Small bold label with a petal marker that sits above a heading and names the section."
+    "description": "Small bold label with a petal marker that sits above a heading and names the section.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "FloatingContact",
     "group": "utilities",
-    "description": "Always-reachable contact shortcuts: round WhatsApp and phone buttons pinned to a bottom corner of every page."
+    "description": "Always-reachable contact shortcuts: round WhatsApp and phone buttons pinned to a bottom corner of every page.",
+    "mode": "single",
+    "primary": "PinnedToCorner"
   },
   {
     "name": "Gallery",
     "group": "media",
-    "description": "Photo grid for events and activity days: equal tiles or a featured first photo. Tiles become buttons when onImageClick is set."
+    "description": "Photo grid for events and activity days: equal tiles or a featured first photo. Tiles become buttons when onImageClick is set.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "Grid",
     "group": "foundations",
-    "description": "Responsive grid: up to N equal columns that collapse on their own as space runs out - no breakpoints needed."
+    "description": "Responsive grid: up to N equal columns that collapse on their own as space runs out - no breakpoints needed.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "Heading",
     "group": "typography",
-    "description": "Page and section titles in Polin Bold/Extrabold, h1-h6 with independent visual size. Combine with Highlight for key words."
+    "description": "Page and section titles in Polin Bold/Extrabold, h1-h6 with independent visual size. Combine with Highlight for key words.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "Hero",
     "group": "sections",
-    "description": "Opening block of a page: big Polin headline, one paragraph, up to two buttons, and a photo in a petal frame with a perched butterfly. Split,"
+    "description": "Opening block of a page: big Polin headline, one paragraph, up to two buttons, and a photo in a petal frame with a perched butterfly. Split,",
+    "mode": "column",
+    "primary": "Split"
   },
   {
     "name": "Highlight",
     "group": "typography",
-    "description": "Inline emphasis for one or two key words inside a Heading: marker stroke, drawn underline, or brand colour."
+    "description": "Inline emphasis for one or two key words inside a Heading: marker stroke, drawn underline, or brand colour.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "Icon",
     "group": "icons",
-    "description": "Line icon from the curated set (lucide outlines + WhatsApp, Facebook, Instagram, YouTube). Inherits text colour, arrows mirror in RTL."
+    "description": "Line icon from the curated set (lucide outlines + WhatsApp, Facebook, Instagram, YouTube). Inherits text colour, arrows mirror in RTL.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "IconButton",
     "group": "actions",
-    "description": "Round icon-only button for carousel arrows, close, menu toggle and social links. Always needs a label."
+    "description": "Round icon-only button for carousel arrows, close, menu toggle and social links. Always needs a label.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "Logo",
     "group": "brand",
-    "description": "The Tikvat Libenu logo as crisp vector: full, compact, mark or wordmark - in colour, inverse (for dark surfaces) or mono."
+    "description": "The Tikvat Libenu logo as crisp vector: full, compact, mark or wordmark - in colour, inverse (for dark surfaces) or mono.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "Pagination",
     "group": "navigation",
-    "description": "Page navigation for the blog and gallery archives: previous, numbered pages, next - direction-aware."
+    "description": "Page navigation for the blog and gallery archives: previous, numbered pages, next - direction-aware.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "Paragraph",
     "group": "typography",
-    "description": "Body copy in Polin Regular: 18px with generous leading by default, tuned for long Hebrew text. Sizes lead, body, sm, xs."
+    "description": "Body copy in Polin Regular: 18px with generous leading by default, tuned for long Hebrew text. Sizes lead, body, sm, xs.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "Petal",
     "group": "brand",
-    "description": "A single soft petal shape from the butterfly logo - background decor only. Use it large and let a section edge crop it, never as loose spots"
+    "description": "A single soft petal shape from the butterfly logo - background decor only. Use it large and let a section edge crop it, never as loose spots",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "Picture",
     "group": "media",
-    "description": "Photo frame with brand corner shapes and fixed ratios. Shows a branded butterfly placeholder when there is no src."
+    "description": "Photo frame with brand corner shapes and fixed ratios. Shows a branded butterfly placeholder when there is no src.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "ProgressBar",
     "group": "data-display",
-    "description": "Horizontal progress bar with a gradient fill (fills from the right in Hebrew) for fundraising goals and multi-step forms."
+    "description": "Horizontal progress bar with a gradient fill (fills from the right in Hebrew) for fundraising goals and multi-step forms.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "RadioGroup",
     "group": "forms",
-    "description": "One-of-many choice as plain radios or bordered cards, inside a fieldset with a legend."
+    "description": "One-of-many choice as plain radios or bordered cards, inside a fieldset with a legend.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "Section",
     "group": "foundations",
-    "description": "Full-width page band with brand background tones, consistent vertical rhythm and an inner Container."
+    "description": "Full-width page band with brand background tones, consistent vertical rhythm and an inner Container.",
+    "mode": "column",
+    "primary": "Navy"
   },
   {
     "name": "SectionHeader",
     "group": "sections",
-    "description": "Standard opening of a page section: eyebrow, title, short description and an optional action at the far side."
+    "description": "Standard opening of a page section: eyebrow, title, short description and an optional action at the far side.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "SelectField",
     "group": "forms",
-    "description": "Native dropdown (best on phones and with screen readers) dressed in the brand field style."
+    "description": "Native dropdown (best on phones and with screen readers) dressed in the brand field style.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "ServiceCard",
     "group": "cards",
-    "description": "Describes one thing the amuta does: petal icon chip, title, short text, optional link. Rotate tones across a row."
+    "description": "Describes one thing the amuta does: petal icon chip, title, short text, optional link. Rotate tones across a row.",
+    "mode": "column",
+    "primary": "ServicesRow"
   },
   {
     "name": "SiteFooter",
     "group": "navigation",
-    "description": "Navy page footer: full logo with tagline, mission line, link columns, contact details, social links and legal small print."
+    "description": "Navy page footer: full logo with tagline, mission line, link columns, contact details, social links and legal small print.",
+    "mode": "column",
+    "primary": "Full"
   },
   {
     "name": "SiteHeader",
     "group": "navigation",
-    "description": "The site's top bar: logo, main navigation and the pink donate button. Collapses into a menu panel when narrower than 960px."
+    "description": "The site's top bar: logo, main navigation and the pink donate button. Collapses into a menu panel when narrower than 960px.",
+    "mode": "column",
+    "primary": "Default"
   },
   {
     "name": "Stack",
     "group": "foundations",
-    "description": "Flex layout helper: stacks children in a column or row with a token-based gap."
+    "description": "Flex layout helper: stacks children in a column or row with a token-based gap.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "Stat",
     "group": "data-display",
-    "description": "One impact figure: a big Polin Black number with a short label and optional petal icon chip. Group several in a StatGroup."
+    "description": "One impact figure: a big Polin Black number with a short label and optional petal icon chip. Group several in a StatGroup.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "StatGroup",
     "group": "data-display",
-    "description": "Lays out a row of Stat figures - the impact-in-numbers strip. Plain, white card or navy band."
+    "description": "Lays out a row of Stat figures - the impact-in-numbers strip. Plain, white card or navy band.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "Steps",
     "group": "sections",
-    "description": "A short numbered sequence (horizontal or vertical timeline) with petal markers - how we accompany a family, how to donate."
+    "description": "A short numbered sequence (horizontal or vertical timeline) with petal markers - how we accompany a family, how to donate.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "Tabs",
     "group": "navigation",
-    "description": "Switches between content panels, or filters a list by category (pills or underline). Arrow keys move between tabs."
+    "description": "Switches between content panels, or filters a list by category (pills or underline). Arrow keys move between tabs.",
+    "mode": "column",
+    "primary": null
   },
   {
     "name": "TeamCard",
     "group": "cards",
-    "description": "Staff, board member or volunteer: portrait in a petal or circle frame, name, role, short bio."
+    "description": "Staff, board member or volunteer: portrait in a petal or circle frame, name, role, short bio.",
+    "mode": "column",
+    "primary": "TeamRow"
   },
   {
     "name": "TestimonialCard",
     "group": "cards",
-    "description": "A family's or volunteer's words: quote, name and role with avatar. Card, tinted or large centred feature variant."
+    "description": "A family's or volunteer's words: quote, name and role with avatar. Card, tinted or large centred feature variant.",
+    "mode": "column",
+    "primary": "TintedRow"
   },
   {
     "name": "TextField",
     "group": "forms",
-    "description": "Single-line text input with label, hint, error line and optional icon. E-mail, phone and URL values are typed left-to-right."
+    "description": "Single-line text input with label, hint, error line and optional icon. E-mail, phone and URL values are typed left-to-right.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "TextLink",
     "group": "typography",
-    "description": "Text hyperlink: inline inside copy, or a standalone read-more link with a direction-aware arrow."
+    "description": "Text hyperlink: inline inside copy, or a standalone read-more link with a direction-aware arrow.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "TextareaField",
     "group": "forms",
-    "description": "Multi-line text input for messages and stories, with the same label / hint / error anatomy as TextField."
+    "description": "Multi-line text input for messages and stories, with the same label / hint / error anatomy as TextField.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "TikvatRoot",
     "group": "foundations",
-    "description": "Page root: sets RTL direction, the Polin font, brand text colour and base resets. Wrap every page or fragment in it once."
+    "description": "Page root: sets RTL direction, the Polin font, brand text colour and base resets. Wrap every page or fragment in it once.",
+    "mode": "grid",
+    "primary": null
   },
   {
     "name": "VideoCard",
     "group": "cards",
-    "description": "Video teaser with a big round play button over the poster frame, duration chip and title. Landscape or vertical."
+    "description": "Video teaser with a big round play button over the poster frame, duration chip and title. Landscape or vertical.",
+    "mode": "column",
+    "primary": null
   }
 ]

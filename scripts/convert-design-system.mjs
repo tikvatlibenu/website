@@ -183,6 +183,24 @@ for (const c of manifest.components ?? []) {
   if (segments.length > 1) groupOf[c.name] = segments[1]
 }
 
+/*
+ * Each component's variant-grid HTML records how wide its stories want to be:
+ * `grid` tiles small components in columns, while `column` and `single` are for
+ * page-width things (Hero, SiteHeader, Section, Gallery…) that must span the
+ * full width to lay out as designed. Without this every story gets tiled and
+ * the page-level components render squeezed into a narrow cell.
+ */
+const layoutOf = {}
+for (const card of manifest.cards ?? []) {
+  const name = path.basename(card.path ?? '', '.html')
+  if (!name) continue
+  const html = await readFile(path.join(source, card.path), 'utf8').catch(() => '')
+  layoutOf[name] = {
+    mode: html.match(/var MODE="([^"]*)"/)?.[1] ?? 'grid',
+    primary: html.match(/var PRIMARY="([^"]*)"/)?.[1] || null,
+  }
+}
+
 await writeFile(
   path.join(out, 'catalog.json'),
   JSON.stringify(
@@ -190,6 +208,8 @@ await writeFile(
       name,
       group: groupOf[name] ?? 'other',
       description: descriptions[name] ?? '',
+      mode: layoutOf[name]?.mode ?? 'grid',
+      primary: layoutOf[name]?.primary ?? null,
     })),
     null,
     2,
