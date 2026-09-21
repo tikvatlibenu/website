@@ -1,8 +1,16 @@
+# Packages allowed to run install scripts. esbuild and sharp both ship native
+# binaries through a postinstall step, and pnpm blocks that by default.
+#
+# Both keys are needed because local and CI run different pnpm majors:
+#   allowBuilds            pnpm 11+  (local development)
+#   onlyBuiltDependencies  pnpm 10   (Vercel, which picks pnpm 10 for this project)
+#
+# pnpm 11 treats an unapproved build as a hard error and refuses to run any
+# script, so a value here that is not literally true breaks `pnpm dev`.
 allowBuilds:
-  esbuild: set this to true or false
-  sharp: set this to true or false
+  esbuild: true
+  sharp: true
+
 onlyBuiltDependencies:
   - esbuild
   - sharp
-  - '@tailwindcss/oxide'
-  - unrs-resolver
