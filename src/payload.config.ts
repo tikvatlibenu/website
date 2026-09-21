@@ -15,6 +15,28 @@ import { SiteSettings } from './globals/SiteSettings'
 import { Navigation } from './globals/Navigation'
 import { AboutPage } from './globals/AboutPage'
 
+/**
+ * Origins allowed to make authenticated requests to Payload.
+ *
+ * Payload drops the auth cookie on any request whose Origin header is not in
+ * this list. Page loads send no Origin, so the admin still looks logged in, but
+ * every save is a POST that does send one — so a missing entry shows up as
+ * "You are not allowed to perform this action" on save, for every user.
+ *
+ * Vercel's system variables are included so the production domain, preview
+ * deployments and branch URLs work without hand-maintaining a list.
+ */
+const trustedOrigins = [
+  process.env.NEXT_PUBLIC_SERVER_URL,
+  process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`,
+  process.env.VERCEL_BRANCH_URL && `https://${process.env.VERCEL_BRANCH_URL}`,
+  process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`,
+  ...(process.env.ADDITIONAL_TRUSTED_ORIGINS?.split(',') ?? []),
+  process.env.NODE_ENV !== 'production' && 'http://localhost:3000',
+]
+  .filter((origin): origin is string => Boolean(origin))
+  .map((origin) => origin.trim().replace(/\/$/, ''))
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -72,8 +94,8 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   sharp,
-  cors: [process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'],
-  csrf: [process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'],
+  cors: trustedOrigins,
+  csrf: trustedOrigins,
   plugins: hasS3
     ? [
         s3Storage({
