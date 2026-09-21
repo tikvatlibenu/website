@@ -156,3 +156,193 @@
   padding-inline-start: 1.625em;
   padding-left: 0;
 }
+
+/* ---------------------------------------------------------------------------
+   Tikvatlibenu design system — Button
+   Token names mirror the `@tikvat-libenu/ui` contract (`--tl-*`) so markup
+   written against the design system drops in unchanged.
+   --------------------------------------------------------------------------- */
+
+@layer base {
+  :root {
+    /* Pink primary: reserved for the single most important action per view. */
+    --tl-color-primary: #c92a67;
+    --tl-color-primary-hover: #ad2158;
+    --tl-color-primary-contrast: #ffffff;
+
+    --tl-color-secondary: #16233b;
+    --tl-color-secondary-hover: #0c1424;
+    --tl-color-secondary-contrast: #fbfaf7;
+
+    --tl-color-soft-bg: #fbe9f0;
+    --tl-color-soft-bg-hover: #f6d8e4;
+    --tl-color-soft-fg: #16233b;
+
+    --tl-color-border: rgb(22 35 59 / 0.28);
+    --tl-color-border-strong: rgb(22 35 59 / 0.55);
+    --tl-color-ghost-hover: rgb(22 35 59 / 0.06);
+
+    --tl-color-bg-inverse: #0c1424;
+    --tl-color-fg-inverse: #fbfaf7;
+    --tl-color-inverse-hover: #e8ebf0;
+    --tl-color-border-inverse: rgb(251 250 247 / 0.45);
+    --tl-color-ghost-hover-inverse: rgb(251 250 247 / 0.12);
+
+    --tl-focus-ring: #d9a94e;
+
+    --tl-radius-lg: 0.875rem;
+    --tl-space-8: 2rem;
+
+    --tl-size-sm: 2.5rem;
+    --tl-size-md: 3rem;
+    --tl-size-lg: 3.5rem;
+  }
+}
+
+@layer components {
+  .tl-on-dark {
+    color: var(--tl-color-fg-inverse);
+  }
+
+  .tl-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    /* Explicit, so the variants do not depend on a preflight reset. */
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 9999px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition-property: background-color, border-color, color, box-shadow, transform;
+    transition-duration: 150ms;
+  }
+
+  .tl-btn:active:not(:disabled):not([aria-disabled='true']) {
+    transform: translateY(1px);
+  }
+
+  .tl-btn:disabled,
+  .tl-btn[aria-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+  }
+
+  /* Sizes ---------------------------------------------------------------- */
+  .tl-btn--sm {
+    block-size: var(--tl-size-sm);
+    padding-inline: 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .tl-btn--md {
+    block-size: var(--tl-size-md);
+    padding-inline: 1.75rem;
+    font-size: 1rem;
+  }
+
+  .tl-btn--lg {
+    block-size: var(--tl-size-lg);
+    padding-inline: 2.25rem;
+    font-size: 1.0625rem;
+  }
+
+  .tl-btn--full {
+    display: flex;
+    inline-size: 100%;
+  }
+
+  /* Variants ------------------------------------------------------------- */
+  .tl-btn--primary {
+    background-color: var(--tl-color-primary);
+    color: var(--tl-color-primary-contrast);
+  }
+
+  .tl-btn--primary:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--tl-color-primary-hover);
+  }
+
+  .tl-btn--secondary {
+    background-color: var(--tl-color-secondary);
+    color: var(--tl-color-secondary-contrast);
+  }
+
+  .tl-btn--secondary:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--tl-color-secondary-hover);
+  }
+
+  .tl-btn--outline {
+    border-color: var(--tl-color-border-strong);
+    color: var(--tl-color-secondary);
+  }
+
+  .tl-btn--outline:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--tl-color-ghost-hover);
+    border-color: var(--tl-color-secondary);
+  }
+
+  .tl-btn--soft {
+    background-color: var(--tl-color-soft-bg);
+    color: var(--tl-color-soft-fg);
+  }
+
+  .tl-btn--soft:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--tl-color-soft-bg-hover);
+  }
+
+  .tl-btn--ghost {
+    color: var(--tl-color-secondary);
+  }
+
+  .tl-btn--ghost:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--tl-color-ghost-hover);
+  }
+
+  .tl-btn--inverse {
+    background-color: var(--tl-color-fg-inverse);
+    color: var(--tl-color-secondary);
+  }
+
+  .tl-btn--inverse:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--tl-color-inverse-hover);
+  }
+
+  .tl-btn--inverse-outline {
+    border-color: var(--tl-color-border-inverse);
+    color: var(--tl-color-fg-inverse);
+  }
+
+  .tl-btn--inverse-outline:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--tl-color-ghost-hover-inverse);
+    border-color: var(--tl-color-fg-inverse);
+  }
+
+  /* Icons ---------------------------------------------------------------- */
+  .tl-btn__icon {
+    flex: none;
+  }
+
+  /* `arrow-forward` and friends point the way the text reads. */
+  [dir='rtl'] .tl-btn__icon--directional {
+    transform: scaleX(-1);
+  }
+
+  .tl-btn__spinner {
+    flex: none;
+    animation: tl-spin 0.7s linear infinite;
+  }
+
+  @keyframes tl-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

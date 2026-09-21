@@ -8,6 +8,7 @@ import { localePath } from '@/lib/url'
 import { mediaUrl } from '@/lib/media'
 import { CampaignCard } from '@/components/campaigns/CampaignCard'
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { Button } from '@/components/ui/Button'
 
 export const revalidate = 300
 
@@ -61,18 +62,22 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               {settings.tagline || dict.home.heroSubtitle}
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link
+              <Button
                 href={localePath(locale, '/donate')}
-                className="rounded-full bg-candle-500 px-8 py-3.5 text-center text-base font-semibold text-night-950 transition-colors hover:bg-candle-400"
+                variant="primary"
+                size="lg"
+                iconStart="heart"
               >
                 {dict.home.heroCta}
-              </Link>
-              <Link
+              </Button>
+              <Button
                 href={localePath(locale, '/campaigns')}
-                className="rounded-full border border-slate-mist-300/40 px-8 py-3.5 text-center text-base font-medium text-parchment transition-colors hover:border-candle-400 hover:text-candle-300"
+                variant="inverse-outline"
+                size="lg"
+                iconEnd="arrow-forward"
               >
                 {dict.home.heroSecondaryCta}
-              </Link>
+              </Button>
             </div>
           </div>
         </div>

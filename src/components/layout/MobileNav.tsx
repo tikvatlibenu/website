@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Button } from '@/components/ui/Button'
 
 export type NavItem = { label: string; href: string; external: boolean }
 
@@ -97,12 +98,16 @@ export function MobileNav({
             </ul>
           </nav>
           {cta && (
-            <Link
+            <Button
               href={cta.href}
-              className="mt-6 block rounded-full bg-candle-500 px-6 py-3 text-center text-base font-semibold text-night-950 transition-colors hover:bg-candle-400"
+              variant="primary"
+              size="lg"
+              fullWidth
+              iconStart="heart"
+              className="mt-6"
             >
               {cta.label}
-            </Link>
+            </Button>
           )}
         </div>
       )}

@@ -4,6 +4,7 @@ import { useActionState } from 'react'
 import { useFormStatus } from 'react-dom'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/dictionaries'
+import { Button } from '@/components/ui/Button'
 import { submitContactForm, type ContactState } from '@/app/(frontend)/[locale]/contact/actions'
 
 const initialState: ContactState = { status: 'idle' }
@@ -15,13 +16,9 @@ function SubmitButton({ dict }: { dict: Dictionary }) {
   const { pending } = useFormStatus()
 
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="rounded-full bg-candle-500 px-8 py-3.5 text-base font-semibold text-night-950 transition-colors hover:bg-candle-400 disabled:cursor-not-allowed disabled:opacity-60"
-    >
+    <Button type="submit" variant="secondary" size="md" loading={pending}>
       {pending ? dict.contact.sending : dict.contact.send}
-    </button>
+    </Button>
   )
 }
 
