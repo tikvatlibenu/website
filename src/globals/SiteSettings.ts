@@ -1,9 +1,20 @@
 import type { GlobalConfig } from 'payload'
+import { revalidateGlobalOnChange } from '@/lib/revalidate'
+import { frontendPaths } from '@/lib/frontendPaths'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: { en: 'Site Settings', he: 'הגדרות האתר' },
-  admin: { group: { en: 'Configuration', he: 'הגדרות' } },
+  admin: {
+    group: { en: 'Configuration', he: 'הגדרות' },
+    // Site name, tagline and contact details show on every page; the homepage
+    // shows the most of them.
+    preview: (_doc, { locale }) => frontendPaths.home(locale),
+  },
+  hooks: {
+    // Show saved changes on the public site immediately.
+    afterChange: [revalidateGlobalOnChange],
+  },
   access: {
     read: () => true,
     update: ({ req }) => Boolean(req.user),

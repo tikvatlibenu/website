@@ -1,5 +1,7 @@
 import type { CollectionConfig, TextFieldSingleValidation } from 'payload'
+import { revalidateOnChange, revalidateOnDelete } from '@/lib/revalidate'
 import { slugify } from '@/lib/slugify'
+import { campaignPublicPath } from '@/lib/frontendPaths'
 
 export const Campaigns: CollectionConfig = {
   slug: 'campaigns',
@@ -9,12 +11,20 @@ export const Campaigns: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'slug', 'status', 'featured', 'updatedAt'],
+    defaultColumns: ['title', 'slug', 'status', 'viewOnSite', 'featured', 'updatedAt'],
+    // "Preview" button on the edit screen, opening the public page in the
+    // locale being edited. Hidden for drafts, which the site does not serve.
+    preview: (doc, { locale }) => campaignPublicPath(locale, doc),
     group: { en: 'Content', he: 'תוכן' },
     description: {
       en: 'A memorial page and donation form for one fallen soul.',
       he: 'דף הנצחה וטופס תרומה לזכרו של נופל אחד.',
     },
+  },
+  hooks: {
+    // Show saved changes on the public site immediately.
+    afterChange: [revalidateOnChange],
+    afterDelete: [revalidateOnDelete],
   },
   access: {
     read: ({ req }) => {
@@ -74,6 +84,20 @@ export const Campaigns: CollectionConfig = {
         { label: { en: 'Published', he: 'פורסם' }, value: 'published' },
       ],
       admin: { position: 'sidebar' },
+    },
+    {
+      // Display-only: a link to the public memorial page, shown in the list
+      // table and in the edit sidebar. `ui` fields have no database column.
+      name: 'viewOnSite',
+      type: 'ui',
+      label: { en: 'Page on site', he: 'הדף באתר' },
+      admin: {
+        position: 'sidebar',
+        components: {
+          Cell: '/components/admin/CampaignLink#CampaignLinkCell',
+          Field: '/components/admin/CampaignLink#CampaignLinkField',
+        },
+      },
     },
     {
       name: 'featured',
