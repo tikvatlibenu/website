@@ -5,7 +5,7 @@ import { useFormStatus } from 'react-dom'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/dictionaries'
 import { Button } from '@/components/ui/Button'
-import { submitContactForm, type ContactState } from '@/app/(frontend)/[locale]/contact/actions'
+import { submitContactForm, type ContactState } from '@/app/(frontend)/[locale]/(site)/contact/actions'
 
 const initialState: ContactState = { status: 'idle' }
 

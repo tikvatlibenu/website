@@ -16,6 +16,7 @@ import { ContactSubmissions } from './collections/ContactSubmissions'
 import { SiteSettings } from './globals/SiteSettings'
 import { Navigation } from './globals/Navigation'
 import { AboutPage } from './globals/AboutPage'
+import { HomePage } from './globals/HomePage'
 
 /**
  * Origins allowed to make authenticated requests to Payload.
@@ -64,7 +65,7 @@ export default buildConfig({
     },
   },
   collections: [Campaigns, Faqs, Media, ContactSubmissions, Users],
-  globals: [SiteSettings, Navigation, AboutPage],
+  globals: [SiteSettings, Navigation, AboutPage, HomePage],
   // The admin interface itself is bilingual. Each user picks their language
   // from their account page; Hebrew is the default, matching the site.
   i18n: {
