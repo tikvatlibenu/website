@@ -36,15 +36,16 @@ async function seed() {
     locale: 'he',
     data: {
       siteName: 'תקוות ליבנו',
-      tagline: 'מנציחים את יקירינו, ותומכים במשפחות שנותרו מאחור.',
+      tagline: 'עוטפים את הכאב. בונים עתיד.',
       metaDescription:
-        'עמותת תקוות ליבנו מנציחה את זכרם של הנופלים ומסייעת למשפחותיהם. כל תרומה מגיעה ישירות למשפחה.',
-      contactEmail: 'info@tikvatlibenu.co.il',
-      contactPhone: '+972 3 000 0000',
-      address: 'רחוב הרצל 1\nתל אביב-יפו',
+        'עמותת תקוות ליבנו מלווה ילדים חולי סרטן וילדים עם שיתוק מוחין (CP), ואת משפחותיהם — רפואית, רגשית, חברתית וכלכלית, מרגע האבחון ועד ההחלמה.',
+      contactEmail: 'tikvat789@gmail.com',
+      contactPhone: '03-5044900',
+      address: 'שבט זבולון 3, לוד',
+      registrationNumber: '580705002',
       donatePageHeading: 'תרומה לקרן הכללית',
       donatePageIntro:
-        'תרומתכם מחולקת בין המשפחות הנתמכות. התרומה מוכרת לצורכי מס לפי סעיף 46.',
+        'תרומתכם מממנת טיפולים ותרופות, ליווי רגשי וימי כיף לילדים ולמשפחותיהם.',
     },
   })
 
@@ -52,14 +53,14 @@ async function seed() {
     slug: 'site-settings',
     locale: 'en',
     data: {
-      siteName: 'Tikvatlibenu',
-      tagline: 'Honouring those we lost, standing with the families they left behind.',
+      siteName: 'Tikvat Libenu',
+      tagline: 'Wrapping the pain. Building a future.',
       metaDescription:
-        'Tikvatlibenu keeps the memory of the fallen alive and supports the families they left behind. Every donation reaches a family directly.',
-      address: '1 Herzl Street\nTel Aviv-Yafo',
+        'Tikvat Libenu walks with children fighting cancer and children with cerebral palsy (CP), and with their families — medically, emotionally, socially and financially, from diagnosis to recovery.',
+      address: '3 Shevet Zvulun St., Lod',
       donatePageHeading: 'Donate to the general fund',
       donatePageIntro:
-        'Your donation is distributed among the families we support. Donations are tax deductible in Israel under Section 46.',
+        'Your donation funds treatments and medicines, emotional care and fun days for the children and their families.',
     },
   })
 
@@ -81,7 +82,7 @@ async function seed() {
         { label: 'שאלות נפוצות', url: '/faq' },
         { label: 'צור קשר', url: '/contact' },
       ],
-      footerNote: 'עמותה רשומה. תרומות מוכרות לצורכי מס לפי סעיף 46 לפקודת מס הכנסה.',
+      footerNote: 'עמותה רשומה מס׳ 580705002. אישור ניהול תקין בתוקף.',
     },
   })
 
@@ -103,7 +104,7 @@ async function seed() {
         { label: 'Contact', url: '/contact' },
       ],
       footerNote:
-        'A registered Israeli non-profit. Donations are tax deductible under Section 46.',
+        'Registered Israeli non-profit no. 580705002. Proper-management certificate in force.',
     },
   })
 
@@ -122,8 +123,8 @@ async function seed() {
       ]),
       trustPoints: [
         {
-          title: 'תרומה מוכרת לצורכי מס',
-          description: 'העמותה מחזיקה באישור לפי סעיף 46 לפקודת מס הכנסה.',
+          title: 'עמותה רשומה עם ניהול תקין',
+          description: 'ע״ר 580705002, אישור ניהול תקין בתוקף — ניתן לאימות בגיידסטאר.',
         },
         {
           title: 'הכסף מגיע למשפחה',
@@ -151,8 +152,8 @@ async function seed() {
       ]),
       trustPoints: [
         {
-          title: 'Tax deductible',
-          description: 'The association holds Section 46 approval under the Israeli tax ordinance.',
+          title: 'Registered with proper management',
+          description: 'Registered non-profit 580705002 with a proper-management certificate — verifiable on Guidestar.',
         },
         {
           title: 'Funds reach the family',
@@ -165,6 +166,196 @@ async function seed() {
             'Donations are processed by a licensed payment provider. We never store card details.',
         },
       ],
+    },
+  })
+
+  // --- Home page ----------------------------------------------------------
+  // Copy verified against the public NPO registry (Guidestar, ע"ר 580705002)
+  // and the charity's own channel — no invented statistics or testimonials.
+  await payload.updateGlobal({
+    slug: 'home-page',
+    locale: 'he',
+    data: {
+      heroEyebrow: 'עמותת תקוות ליבנו',
+      heroTitle: 'עוטפים את הכאב.',
+      heroTitleHighlight: 'בונים עתיד.',
+      heroDescription:
+        'מלווים ילדים חולי סרטן וילדים עם שיתוק מוחין (CP) — ואת המשפחות שלהם — רפואית, רגשית, חברתית וכלכלית, מרגע האבחון ועד ההחלמה. בכל רחבי הארץ.',
+      heroPrimaryLabel: 'תרמו תקווה',
+      heroSecondaryLabel: 'הכירו את העמותה',
+      heroHighlights: [
+        { value: '360°', label: 'ליווי רפואי, רגשי וכלכלי' },
+        { value: 'יד ביד', label: 'מרגע האבחון ועד ההחלמה' },
+        { value: 'בכל הארץ', label: 'בבתי החולים, בבית ובקהילה' },
+      ],
+      servicesEyebrow: 'מה אנחנו עושים',
+      servicesTitle: 'הפעילות שלנו',
+      servicesDescription: 'ליווי הוליסטי — רפואי, רגשי, חברתי וכלכלי — לאורך כל הדרך.',
+      services: [
+        {
+          tone: 'teal',
+          icon: 'stethoscope',
+          title: 'סיוע רפואי וכלכלי',
+          description:
+            'מממנים תרופות חיוניות וטיפולים שאינם בסל הבריאות, ומקלים על הנטל הכלכלי של המשפחה.',
+        },
+        {
+          tone: 'pink',
+          icon: 'heart-handshake',
+          title: 'ליווי רגשי קבוע',
+          description:
+            'אוזן קשבת ותמיכה רגשית להורים, לאחים ולילדים — באופן קבוע, לא רק ברגעי משבר.',
+        },
+        {
+          tone: 'yellow',
+          icon: 'users',
+          title: 'מתנדבים לצד הילדים',
+          description:
+            'המתנדבים שלנו מגיעים אל הילדים בבתי החולים, בבית ובמסגרות החינוך — בכל רחבי הארץ.',
+        },
+        {
+          tone: 'navy',
+          icon: 'sun',
+          title: 'ימי כיף ומחנות',
+          description: 'ימי כיף, מחנות ונופשים בארץ ובחו״ל — רגעים של ילדות, חברים וצחוק.',
+        },
+      ],
+      transparencyEyebrow: 'שקיפות',
+      transparencyTitle: 'שקוף וגלוי',
+      transparencyDescription: 'הנתונים מתוך המרשם הציבורי של רשם העמותות.',
+      transparencyItems: [
+        { value: 'ע״ר', label: 'עמותה רשומה 580705002' },
+        { value: '2020', label: 'שנת ייסוד העמותה' },
+        { value: '2026', label: 'אישור ניהול תקין בתוקף' },
+      ],
+      aboutEyebrow: 'מי אנחנו',
+      aboutTitle: 'נעים להכיר: תקוות ליבנו',
+      aboutBody:
+        'תקוות ליבנו קמה כדי שאף משפחה לא תעבור את התקופה הקשה בחייה לבד. הצוות והמתנדבים שלנו נמצאים לצד הילדים והמשפחות בכל מקום שבו הם צריכים אותנו — בבית החולים, בבית ובקהילה.',
+      aboutLinkLabel: 'לסיפור המלא',
+      storiesEyebrow: 'סיפורי משפחות',
+      storiesTitle: 'המשפחות מספרות',
+      storiesDescription: 'סרטונים אמיתיים מתוך ערוץ העמותה.',
+      stories: [
+        {
+          videoUrl: 'https://www.youtube.com/shorts/GJOLGrjQJXE',
+          title: 'להציל אותי מהסרטן',
+          description: 'סיפור אישי של מאבק — והליווי של העמותה לאורכו.',
+        },
+        {
+          videoUrl: 'https://www.youtube.com/watch?v=k8i6l_sb5Zg',
+          title: 'עזרה ותמיכה לחולי סרטן',
+          description: 'כך נראה הליווי של תקוות ליבנו — בבית החולים ובבית.',
+        },
+        {
+          videoUrl: 'https://www.youtube.com/shorts/eE0LidSAi-w',
+          title: 'הסיפור של הילה',
+          description: 'המסע של הילה ומשפחתה — מרגע האבחון ועד החיוך.',
+        },
+      ],
+      campaignsEyebrow: 'קמפיינים פעילים',
+      campaignsTitle: 'זיכרון שממשיך לעשות טוב',
+      campaignsDescription:
+        'קמפיינים שהוקמו לזכרם של ילדים אהובים. כל תרומה ממשיכה את דרכם ועוטפת משפחות נוספות.',
+      ctaTitle: 'רוצים להיות חלק מהתקווה?',
+      ctaDescription:
+        'כל תרומה — קטנה או גדולה — עוטפת משפחה ברגע הכי קשה: מימון טיפולים ותרופות, ליווי רגשי וימי כיף לילדים.',
+      ctaPrimaryLabel: 'לתרומה',
+      ctaSecondaryLabel: 'צרו קשר',
+    },
+  })
+
+  await payload.updateGlobal({
+    slug: 'home-page',
+    locale: 'en',
+    data: {
+      heroEyebrow: 'Tikvat Libenu',
+      heroTitle: 'Wrapping the pain.',
+      heroTitleHighlight: 'Building a future.',
+      heroDescription:
+        'We walk with children fighting cancer and children with cerebral palsy (CP) — and with their families — medically, emotionally, socially and financially, from diagnosis to recovery. All across Israel.',
+      heroPrimaryLabel: 'Donate hope',
+      heroSecondaryLabel: 'Meet the charity',
+      heroHighlights: [
+        { value: '360°', label: 'Medical, emotional & financial care' },
+        { value: 'Hand in hand', label: 'From diagnosis to recovery' },
+        { value: 'Nationwide', label: 'In hospitals, at home, in the community' },
+      ],
+      servicesEyebrow: 'What we do',
+      servicesTitle: 'Our work',
+      servicesDescription: 'Holistic support — medical, emotional, social and financial — all the way.',
+      services: [
+        {
+          tone: 'teal',
+          icon: 'stethoscope',
+          title: 'Medical & financial aid',
+          description:
+            'Funding essential medicines and treatments not covered by public health insurance, easing the family’s financial burden.',
+        },
+        {
+          tone: 'pink',
+          icon: 'heart-handshake',
+          title: 'Ongoing emotional care',
+          description:
+            'A listening ear and steady emotional support for parents, siblings and children — not only in moments of crisis.',
+        },
+        {
+          tone: 'yellow',
+          icon: 'users',
+          title: 'Volunteers at the children’s side',
+          description:
+            'Our volunteers come to the children in hospitals, at home and at school — all across the country.',
+        },
+        {
+          tone: 'navy',
+          icon: 'sun',
+          title: 'Fun days & camps',
+          description:
+            'Fun days, camps and getaways in Israel and abroad — moments of childhood, friends and laughter.',
+        },
+      ],
+      transparencyEyebrow: 'Transparency',
+      transparencyTitle: 'Open and accountable',
+      transparencyDescription: 'Data from the public register of the Israeli Registrar of Non-Profits.',
+      transparencyItems: [
+        { value: 'Reg.', label: 'Registered charity 580705002' },
+        { value: '2020', label: 'Year founded' },
+        { value: '2026', label: 'Proper-management certificate in force' },
+      ],
+      aboutEyebrow: 'Who we are',
+      aboutTitle: 'Meet Tikvat Libenu',
+      aboutBody:
+        'Tikvat Libenu exists so that no family goes through the hardest time of its life alone. Our team and volunteers stand beside the children and their families wherever they are needed — in hospital, at home and in the community.',
+      aboutLinkLabel: 'Read our story',
+      storiesEyebrow: 'Family stories',
+      storiesTitle: 'Families speak',
+      storiesDescription: 'Real videos from the charity’s channel.',
+      stories: [
+        {
+          videoUrl: 'https://www.youtube.com/shorts/GJOLGrjQJXE',
+          title: 'Save me from cancer',
+          description: 'A personal story of a fight — and the charity’s support along the way.',
+        },
+        {
+          videoUrl: 'https://www.youtube.com/watch?v=k8i6l_sb5Zg',
+          title: 'Help and support for children with cancer',
+          description: 'What Tikvat Libenu’s care looks like — in hospital and at home.',
+        },
+        {
+          videoUrl: 'https://www.youtube.com/shorts/eE0LidSAi-w',
+          title: 'Hila’s story',
+          description: 'Hila and her family’s journey — from diagnosis to a smile.',
+        },
+      ],
+      campaignsEyebrow: 'Active campaigns',
+      campaignsTitle: 'A memory that keeps doing good',
+      campaignsDescription:
+        'Campaigns founded in memory of beloved children. Every donation carries their way forward and wraps more families.',
+      ctaTitle: 'Want to be part of the hope?',
+      ctaDescription:
+        'Every donation — small or large — wraps a family at its hardest moment: funding treatments and medicines, emotional care and fun days for the children.',
+      ctaPrimaryLabel: 'Donate',
+      ctaSecondaryLabel: 'Contact us',
     },
   })
 

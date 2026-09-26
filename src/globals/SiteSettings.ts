@@ -128,6 +128,17 @@ export const SiteSettings: GlobalConfig = {
               localized: true,
             },
             {
+              name: 'registrationNumber',
+              type: 'text',
+              label: { en: 'NPO registration number (ע״ר)', he: 'מספר עמותה (ע״ר)' },
+              admin: {
+                description: {
+                  en: 'Shown in the footer as a trust signal, e.g. 580705002.',
+                  he: 'מוצג בפוטר כאות אמון, לדוגמה 580705002.',
+                },
+              },
+            },
+            {
               name: 'social',
               type: 'array',
               label: { en: 'Social Links', he: 'רשתות חברתיות' },

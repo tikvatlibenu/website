@@ -3,7 +3,7 @@ import { cache } from 'react'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import type { Locale } from '@/i18n/config'
-import type { AboutPage, Campaign, Faq, Navigation, SiteSetting } from '@/payload-types'
+import type { AboutPage, Campaign, Faq, HomePage, Navigation, SiteSetting } from '@/payload-types'
 
 /**
  * All content is read through the Payload local API so server components hit
@@ -14,6 +14,11 @@ const client = cache(async () => getPayload({ config }))
 export const getSiteSettings = cache(async (locale: Locale): Promise<SiteSetting> => {
   const payload = await client()
   return payload.findGlobal({ slug: 'site-settings', locale, depth: 1 })
+})
+
+export const getHomePage = cache(async (locale: Locale): Promise<HomePage> => {
+  const payload = await client()
+  return payload.findGlobal({ slug: 'home-page', locale, depth: 1 })
 })
 
 export const getAboutPage = cache(async (locale: Locale): Promise<AboutPage> => {

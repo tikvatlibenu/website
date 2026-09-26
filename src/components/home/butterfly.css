@@ -1,0 +1,45 @@
+/*
+ * Летящая бабочка главной страницы.
+ * Иерархия трансформов по butterfly-motion-spec:
+ * frame (позиция/spin) > view (ракурс камеры) > body (курс) > 2 пары крыльев.
+ */
+#fly-butterfly {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 60;
+  pointer-events: none;
+  will-change: transform;
+  transform-origin: 51.39% 51.95%;
+}
+#fly-butterfly .bfly-view,
+#fly-butterfly .bfly-body {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: 51.39% 51.95%;
+}
+#fly-butterfly .bfly-wing {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+  transform-origin: 51.39% 51.95%; /* шарнир — ось тела */
+  backface-visibility: visible;
+}
+.tl-home-perch {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  #fly-butterfly {
+    display: none !important;
+  }
+  .tl-hero__butterfly {
+    visibility: visible !important;
+  }
+}

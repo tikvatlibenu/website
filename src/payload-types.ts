@@ -97,11 +97,13 @@ export interface Config {
     'site-settings': SiteSetting;
     navigation: Navigation;
     'about-page': AboutPage;
+    'home-page': HomePage;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     navigation: NavigationSelect<false> | NavigationSelect<true>;
     'about-page': AboutPageSelect<false> | AboutPageSelect<true>;
+    'home-page': HomePageSelect<false> | HomePageSelect<true>;
   };
   locale: 'he' | 'en';
   widgets: {
@@ -617,6 +619,10 @@ export interface SiteSetting {
   contactEmail: string;
   contactPhone?: string | null;
   address?: string | null;
+  /**
+   * Shown in the footer as a trust signal, e.g. 580705002.
+   */
+  registrationNumber?: string | null;
   social?:
     | {
         platform: 'facebook' | 'instagram' | 'x' | 'youtube' | 'whatsapp';
@@ -710,6 +716,90 @@ export interface AboutPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page".
+ */
+export interface HomePage {
+  id: number;
+  heroEyebrow?: string | null;
+  heroTitle: string;
+  /**
+   * Rendered after the title with the yellow marker highlight.
+   */
+  heroTitleHighlight?: string | null;
+  heroDescription?: string | null;
+  heroImage?: (number | null) | Media;
+  heroPrimaryLabel?: string | null;
+  heroSecondaryLabel?: string | null;
+  /**
+   * Up to three short proof points under the buttons. Only verifiable claims.
+   */
+  heroHighlights?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  servicesEyebrow?: string | null;
+  servicesTitle?: string | null;
+  servicesDescription?: string | null;
+  services?:
+    | {
+        tone: 'teal' | 'pink' | 'yellow' | 'navy';
+        icon: 'stethoscope' | 'heart-handshake' | 'users' | 'sun' | 'heart' | 'gift';
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  transparencyEyebrow?: string | null;
+  transparencyTitle?: string | null;
+  transparencyDescription?: string | null;
+  /**
+   * Facts a donor can verify in the public registry (Guidestar). No unverifiable numbers.
+   */
+  transparencyItems?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  aboutEyebrow?: string | null;
+  aboutTitle?: string | null;
+  aboutBody?: string | null;
+  aboutLinkLabel?: string | null;
+  aboutImage?: (number | null) | Media;
+  storiesEyebrow?: string | null;
+  storiesTitle?: string | null;
+  storiesDescription?: string | null;
+  /**
+   * Real videos from the charity’s channel. YouTube links (watch or shorts).
+   */
+  stories?:
+    | {
+        videoUrl: string;
+        title: string;
+        description?: string | null;
+        /**
+         * Optional custom cover; without it the YouTube thumbnail is used.
+         */
+        cover?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  campaignsEyebrow?: string | null;
+  campaignsTitle?: string | null;
+  campaignsDescription?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryLabel?: string | null;
+  ctaSecondaryLabel?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -723,6 +813,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   contactEmail?: T;
   contactPhone?: T;
   address?: T;
+  registrationNumber?: T;
   social?:
     | T
     | {
@@ -781,6 +872,75 @@ export interface AboutPageSelect<T extends boolean = true> {
         id?: T;
       };
   metaDescription?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page_select".
+ */
+export interface HomePageSelect<T extends boolean = true> {
+  heroEyebrow?: T;
+  heroTitle?: T;
+  heroTitleHighlight?: T;
+  heroDescription?: T;
+  heroImage?: T;
+  heroPrimaryLabel?: T;
+  heroSecondaryLabel?: T;
+  heroHighlights?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  servicesEyebrow?: T;
+  servicesTitle?: T;
+  servicesDescription?: T;
+  services?:
+    | T
+    | {
+        tone?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  transparencyEyebrow?: T;
+  transparencyTitle?: T;
+  transparencyDescription?: T;
+  transparencyItems?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  aboutEyebrow?: T;
+  aboutTitle?: T;
+  aboutBody?: T;
+  aboutLinkLabel?: T;
+  aboutImage?: T;
+  storiesEyebrow?: T;
+  storiesTitle?: T;
+  storiesDescription?: T;
+  stories?:
+    | T
+    | {
+        videoUrl?: T;
+        title?: T;
+        description?: T;
+        cover?: T;
+        id?: T;
+      };
+  campaignsEyebrow?: T;
+  campaignsTitle?: T;
+  campaignsDescription?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryLabel?: T;
+  ctaSecondaryLabel?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
